@@ -44,10 +44,10 @@ export default async function handler(
     }
 
     const secret = new TextEncoder().encode(process.env.JWT_SECRATE);
-    const isMatch = await bcrypt.compare(password, userWithEmail.email);
+    const isMatch = await bcrypt.compare(password, userWithEmail.password);
 
     if (isMatch) {
-      const alg = "H5256";
+      const alg = "HS256";
 
       const token = await new jose.SignJWT({ email: userWithEmail })
 
